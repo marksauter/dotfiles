@@ -1,0 +1,7 @@
+# Quick Switch To Directories
+alias dots='cd ~/.dotfiles'
+alias down='cd ~/Downloads'
+alias code='cd ~/Code'
+
+# Quick Config Editing
+alias aliasadd='nvim ~/.alias'
