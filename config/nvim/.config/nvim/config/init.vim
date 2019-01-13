@@ -1,21 +1,22 @@
+
 " Vim Initialization
 " ------------------
 
 " Global Mappings "{{{
-" Use spacebar as leaser and ; as secondary-leader
+" Use spacebar as leader and ; as secondary-leader
 " Required before loading plugins!
 let g:mapleader="\<Space>"
 let g:maplocalleader=';'
 
-" Release keymappings prefixes, evict entirely for use of plug-ings.
-nnoremap <Space>	<Nop>
-xnoremap <Space>	<Nop>
-nnoremap ,		<Nop>
-xnoremap ,		<Nop>
-nnoremap ;		<Nop>
-xnoremap ;		<Nop>
-nnoremap m		<Nop>
-xnoremap m		<Nop>
+" Release keymappings prefixes, evict entirely for use of plug-ins.
+nnoremap <Space>  <Nop>
+xnoremap <Space>  <Nop>
+nnoremap ,        <Nop>
+xnoremap ,        <Nop>
+nnoremap ;        <Nop>
+xnoremap ;        <Nop>
+nnoremap m        <Nop>
+xnoremap m        <Nop>
 
 " }}}
 " Ensure cache directory "{{{
@@ -43,15 +44,17 @@ if &runtimepath !~# '/dein.vim'
 	if ! isdirectory(s:dein_dir)
 		execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
 	endif
-	
+
 	execute 'set runtimepath+='.substitute(
 		\ fnamemodify(s:dein_dir, ':p') , '/$', '', '')
 endif
 
 " }}}
+" Disable default plugins "{{{
+
 " Disable menu.vim
 if has('gui_running')
-	set guioptions=Mc
+  set guioptions=Mc
 endif
 
 " Disable pre-bundled plugins
@@ -61,7 +64,7 @@ let g:loaded_gzip = 1
 let g:loaded_logiPat = 1
 let g:loaded_matchit = 1
 let g:loaded_matchparen = 1
-let g:netrw_nogx = 1 " disable netrw's gx mapping
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
 let g:loaded_rrhelper = 1
 let g:loaded_ruby_provider = 1
 let g:loaded_shada_plugin = 1
@@ -75,4 +78,4 @@ let g:loaded_zip = 1
 let g:loaded_zipPlugin = 1
 " }}}
 
-" vim: set foldmethod=marker tabstop=2 shiftwidth=2 textwidth=80 noexpandtab :
+" vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :

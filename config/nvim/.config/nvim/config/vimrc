@@ -1,11 +1,13 @@
-" https://github.com/marksauter/dotfiles/nvim
+"      .-.     .-.     .-.     .-.     .-.     .-.     .-.
+" `._.'   `._.'   `._.'   `._.'   `._.'   `._.'   `._.'
 "
-" Runtime and Plugins
-" -------------------------------------------
+" https://github.com/rafi/vim-config
 
-" reset to vim-defaults
-if &compatible			" only if not set before:
-	set nocompatible	" use vim-defaults instead of vi-defaults (easier, more user friendly)
+" Runtime and Plugins
+" -------------------------------------------------
+
+if &compatible
+	set nocompatible
 endif
 
 " let $NVIM_PYTHON_LOG_FILE = '/tmp/nvim_log'
@@ -27,13 +29,24 @@ let g:dein#install_log_filename = $VARPATH.'/dein.log'
 if isdirectory($VARPATH.'/venv/neovim2')
 	let g:python_host_prog = $VARPATH.'/venv/neovim2/bin/python'
 endif
+if isdirectory($VARPATH.'/venv/neovim3')
+	let g:python3_host_prog = $VARPATH.'/venv/neovim3/bin/python'
+endif
+
+if has('pythonx')
+	if has('python3')
+		set pyxversion=3
+	elseif has('python')
+		set pyxversion=2
+	endif
+endif
 
 function! s:dein_check_ruby() abort
 	call system("ruby -e 'require \"json\"; require \"yaml\"'")
 	return (v:shell_error == 0) ? 1 : 0
 endfunction
 
-function s:dein_check_yaml2json()
+function! s:dein_check_yaml2json()
 	try
 		let result = system('yaml2json', "---\ntest: 1")
 		if v:shell_error != 0
@@ -53,14 +66,14 @@ function! s:dein_load_yaml(filename) abort
 		" See: https://github.com/koraa/large-yaml2json-json2yaml
 		let g:denite_plugins = json_decode(
 					\ system('yaml2json', readfile(a:filename)))
-	elsif executable('ruby') && exists('*json_decode') && s:dein_check_ruby()
+	elseif executable('ruby') && exists('*json_decode') && s:dein_check_ruby()
 		let g:denite_plugins = json_decode(
 					\ system("ruby -e 'require \"json\"; require \"yaml\"; ".
 									\ "print JSON.generate YAML.load \$stdin.read'",
 									\ readfile(a:filename)))
 	else
 		" Fallback to use python3 and PyYAML
-	python << endpython
+	python3 << endpython
 import vim, yaml
 with open(vim.eval('a:filename'), 'r') as f:
 	vim.vars['denite_plugins'] = yaml.load(f.read())
@@ -94,14 +107,9 @@ function! s:source_file(path, ...) abort
 	endtry
 endfunction
 
-" To debug autocommands uncomment the following line
-" set verbose=9
-
 " Set augroup
 augroup MyAutoCmd
-	" Remove all MyAutoCmd autocomands
 	autocmd!
-	" When the user doesn't press a key for a while redraw
 	autocmd CursorHold *? syntax sync minlines=300
 augroup END
 
@@ -132,7 +140,7 @@ if dein#load_state(s:path)
 		echoerr 'Please run: pip3 install --user PyYAML'
 	endtry
 
-	if isdirectory(expand('%VIMPATH/dev'))
+	if isdirectory(expand('$VIMPATH/dev'))
 		call dein#local(expand('$VIMPATH/dev'), {'frozen': 1, 'merged': 0})
 	endif
 	call dein#end()
@@ -181,4 +189,4 @@ if filereadable(expand('$VIMPATH/config/local.vim'))
 endif
 set secure
 
-" vim: set tabstop=2 shiftwidth=2 textwidth=80 noexpandtab :
+" vim: set ts=2 sw=2 tw=80 noet :
