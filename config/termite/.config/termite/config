@@ -1,0 +1,7 @@
+# ~/.config/termite/config
+
+[options]
+font = Hack 16
+
+[colors]
+background = rgba(0, 0, 0, 0.8)

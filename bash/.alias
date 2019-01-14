@@ -5,3 +5,4 @@ alias code='cd ~/Code'
 
 # Quick Config Editing
 alias aliasadd='nvim ~/.alias'
+alias nvimadd='nvim ~/.dotfiles/config/nvim/.config/nvim/config/plugins.yaml'
