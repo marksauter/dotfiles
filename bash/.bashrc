@@ -7,6 +7,7 @@ export PATH=$HOME/.local/bin:$PATH
 export VISUAL=nvim
 export EDITOR=nvim
 export BROWSER=firefox
+export RTV_BROWSER=w3m
 export TZ=America/Chicago
 export XDG_CONFIG_HOME="$HOME/.config"
 

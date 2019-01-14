@@ -8,6 +8,7 @@ alias nvimrc='nvim ~/.config/nvim/config/init.vim'
 alias bashrc='nvim ~/.bashrc'
 alias xresources='nvim ~/.Xresources'
 alias xmobarrc='nvim ~/.xmobarrc'
+alias xmonadhs='nvim ~/.xmonad/xmonad.hs'
 alias reload='source ~/.bashrc'
 
 # Miscellaneous Commands
