@@ -4,5 +4,21 @@ alias down='cd ~/Downloads'
 alias code='cd ~/Code'
 
 # Quick Config Editing
-alias aliasadd='nvim ~/.alias'
-alias nvimadd='nvim ~/.dotfiles/config/nvim/.config/nvim/config/plugins.yaml'
+alias nvimrc='nvim ~/.config/nvim/config/init.vim'
+alias bashrc='nvim ~/.bashrc'
+alias xresources='nvim ~/.Xresources'
+alias xmobarrc='nvim ~/.xmobarrc'
+alias reload='source ~/.bashrc'
+
+# Miscellaneous Commands
+alias ls="ls --group-directories-first --time-style=+'%m.%d.%Y %H:%M' --color=auto -hFX"
+alias ll="ls -l --group-directories-first --time-style=+'%m.%d.%Y %H:%M' --color=auto -F"
+alias la="ls -al --group-directories-first --time-style=+'%m.%d.%Y %H:%M' --color=auto -F"
+alias grep='grep --color=tty -d skip'
+alias google='ping -c1 8.8.8.8'
+alias cp='cp -i'
+alias df='df -h'
+alias free='free -m'
+alias rm='rm -i'
+alias add_alias='nvim ~/.alias'
+alias add_plug='nvim ~/.config/nvim/config/plugins.yaml'

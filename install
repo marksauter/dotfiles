@@ -16,6 +16,8 @@ BLUE="\0033[34m"
 CLC="\0033[0m"
 STATUS=TRUE
 
+shopt -s extglob
+
 #
 #    FUNCTIONS
 #
@@ -48,7 +50,7 @@ EOF
 install_all(){
 echo -e "$BLUE[*] Installing all the configs$CLC\n "
 # install parent configs
-for config in {bash}
+for config in !(config|.git)/
 do
         echo -ne "    [+] Installing $config ..."
         stow -t ~ "$config"
@@ -155,12 +157,17 @@ fi
 # View all the available config
 view_configs(){
 echo ""                       	
-echo "├────────────────[Available Configs]──────────────────┤"
-echo "│ bash color compton fonts homepage irssi vim zathura │"
-echo "│ local newsboat themes tmux vim weechat ranger       │"
-echo "│ bspwm cava i3-gaps lemonbar luakit mpd mpv rofi     │"
-echo "│ mutt ncmpcpp polybar popups pulse qutebrowser sxhkd │"
-echo "└─────────────────────────────────────────────────────┘"
+for d in !(config|.git)/
+do
+        config=$(basename "$d")
+        echo -ne "$config\n"
+done
+# install additional configs from the config dir
+cd config
+for config in *
+do
+        echo -ne "$config\n"
+done
 echo ""
 exit
 }
