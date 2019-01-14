@@ -89,7 +89,7 @@ auto-reload yes
 #
 # bind-key ^R reload-all
 bind-key \ reload-all
-bind-key "RIGHT" select tag
+bind-key "RIGHT" select-tag
 bind-key "SPACE" open
 bind-key j next
 bind-key k prev
@@ -184,11 +184,11 @@ bind-key K prev article
 # color background white black
 color background        default   default
 color listnormal        default   default
-color listfocus         default   default
+color listfocus         white			cyan    bold
 color info              cyan      black
 color article           default   default
-color listnormal_unread white     default
-color listfocus_unread	color255 cyan bold
+color listnormal_unread yellow    default
+color listfocus_unread	yellow		cyan		bold
 
 ####  confirm-exit
 #
@@ -538,7 +538,7 @@ highlight article     "\\[image\\ [0-9]+\\]"                green    default  bo
 highlight article     "\\[embedded flash: [0-9][0-9]*\\]"   green    default  bold
 highlight article     ":.*\\(link\\)$"                      cyan     default
 highlight article     ":.*\\(image\\)$"                     blue     default
-highlight article			":.*\\(embedded flash\\)$"						magenta default
+highlight article			":.*\\(embedded flash\\)$"						magenta  default
 
 ####  highlight-article
 #
@@ -1350,7 +1350,7 @@ save-path "~/Articles"
 #
 # Default value: yes
 #
-show-read-articles no
+# show-read-articles no
 
 ####  show-read-feeds
 #
@@ -1362,7 +1362,7 @@ show-read-articles no
 #
 # Default value: yes
 #
-show-read-feeds no
+# show-read-feeds no
 
 ####  suppress-first-reload
 #
