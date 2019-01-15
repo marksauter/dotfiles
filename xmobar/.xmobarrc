@@ -1,6 +1,7 @@
+-- vim: set ft=haskell :
 Config {
 	-- appearance
-	  font = "xft:Bitstream Hack:size=9:bold:antialias=true"
+	  font = "xft:Roboto:size=9:bold:antialias=true"
 	, bgColor = "black"
 	, fgColor = "#646464"
 	, position = Top
@@ -10,7 +11,7 @@ Config {
 	-- layout
 	, sepChar = "%"		-- delineator between plugin names and straight text
 	, alignSep = "}{"	-- separator between left-right alignment
-	, template = "%battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %RJTT% | %date% || %kbd% "
+	, template = "%battery% | %volume% | %brightness% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %RJTT% | %date% || %kbd% "
 
 	-- general behavior
 	, lowerOnStart = True 	-- send to bottom of window stack on start
@@ -92,6 +93,12 @@ Config {
 					       , "-i"	, "<fc=#006000>Charged</fc>"
 				     ] 50
 
+		-- volume monitor
+		, Run Com "/bin/bash" ["-c", "~/.xmonad/get-volume.sh"] "volume" 1
+
+		-- brightness monitor
+		, Run Com "/bin/bash" ["-c", "echo Lum: `xbacklight -get | grep -oE '^.[0-9]{0,3}'`%"] "brightness" 1
+
 		-- time and date indicator 
 		--   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
 		, Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
@@ -102,4 +109,3 @@ Config {
 				     ]
 		]
 }
--- vim: set ts=2 sw=2 tw=80 noet ft=haskell :

@@ -8,6 +8,7 @@ import System.IO
 main :: IO ()
 main = do
 	xmproc <- spawnPipe "xmobar"
+	xbindkeys <- spawnPipe "xbindkeys"
 	xmonad $ defaultConfig
 		{ terminal    = "termite"
 		, workspaces  = myWorkspaces

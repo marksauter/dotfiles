@@ -4,9 +4,10 @@ alias down='cd ~/Downloads'
 alias code='cd ~/Code'
 
 # Quick Config Editing
+alias vimrc='nvim ~/.config/nvim/config/vimrc'
 alias nvimrc='nvim ~/.config/nvim/config/init.vim'
 alias bashrc='nvim ~/.bashrc'
-alias xresources='nvim ~/.Xresources'
+alias xbindkeysrc='nvim ~/.xbindkeysrc'
 alias xmobarrc='nvim ~/.xmobarrc'
 alias xmonadhs='nvim ~/.xmonad/xmonad.hs'
 alias reload='source ~/.bashrc'
