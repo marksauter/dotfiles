@@ -11,7 +11,7 @@ Config {
 	-- layout
 	, sepChar = "%"		-- delineator between plugin names and straight text
 	, alignSep = "}{"	-- separator between left-right alignment
-	, template = "%battery% | %volume% | %brightness% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %RJTT% | %date% || %kbd% "
+	, template = "%battery% | %alsa:default:Master% | %bright% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %RJTT% | %date% || %kbd% "
 
 	-- general behavior
 	, lowerOnStart = True 	-- send to bottom of window stack on start
@@ -94,10 +94,26 @@ Config {
 				     ] 50
 
 		-- volume monitor
-		, Run Com "/bin/bash" ["-c", "~/.xmonad/get-volume.sh"] "volume" 1
+		, Run Alsa "default" "Master"
+				[ "--template", "Vol: <volume>% <status>"
+				, "--Low",			"33"			-- units: %
+				, "--High",			"66"			-- units: %
+				, "--low",			"darkred"
+				, "--normal",		"darkorange"
+				, "--high",			"darkgreen"
+				]
 
 		-- brightness monitor
-		, Run Com "/bin/bash" ["-c", "echo Lum: `xbacklight -get | grep -oE '^.[0-9]{0,3}'`%"] "brightness" 1
+		, Run Brightness
+				[ "--template", "Lum: <percent>%"
+				, "--Low",			"30"			-- units: %
+				, "--High",			"70"			-- units: %
+				, "--low",			"darkred"
+				, "--normal",		"darkorange"
+				, "--high",			"darkgreen"
+				, "--"
+				,		"-D",					"intel_backlight"
+				] 60
 
 		-- time and date indicator 
 		--   (%F = y-m-d date, %a = day of week, %T = h:m:s time)

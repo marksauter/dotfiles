@@ -9,7 +9,7 @@ main :: IO ()
 main = do
 	xmproc <- spawnPipe "xmobar"
 	xbindkeys <- spawnPipe "xbindkeys"
-	xmonad $ defaultConfig
+	xmonad $ def
 		{ terminal    = "termite"
 		, workspaces  = myWorkspaces
 		, focusFollowsMouse = True
@@ -17,9 +17,9 @@ main = do
 		, normalBorderColor = "404040"
 		, borderWidth = 2
 		, modMask     = mod4Mask
-		, manageHook  = manageDocks <+> manageHook defaultConfig
-		, layoutHook  = avoidStruts $ layoutHook defaultConfig
-		, handleEventHook = handleEventHook defaultConfig <+> docksEventHook
+		, manageHook  = manageDocks <+> manageHook def
+		, layoutHook  = avoidStruts $ layoutHook def
+		, handleEventHook = handleEventHook def <+> docksEventHook
 		, logHook     = dynamicLogWithPP xmobarPP
 			{ ppOutput	= hPutStrLn xmproc
 			, ppTitle 	= xmobarColor "darkgreen" "" . shorten 20
@@ -34,7 +34,7 @@ myWorkspaces = [ "code", "web" ]
 
 myStartupHook = do
 	spawn "xautolock -time 5 -locker \"i3lock -i /usr/share/backgrounds/hanyujie.png -p default -n\" -notify 20 -notifier \"xset dpms forceoff\" &"
-	spawn "feh --bg-fill --randomize /usr/share/backgrounds/* &"
+	spawn "feh --bg-fill /usr/share/backgrounds/hanyujie.png &"
 	spawn "compton -b"
 
 myAdditionalKeysP =
