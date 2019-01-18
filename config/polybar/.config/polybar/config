@@ -52,28 +52,29 @@ font-0 = Roboto:size=15;3
 font-1 = Font Awesome 5 Free:style=Regular:pixelsize=15;3
 font-2 = Font Awesome 5 Free:style=Solid:pixelsize=15;3
 font-3 = Font Awesome 5 Free Brands:pixelsize=15;3
+font-4 = Noto Color Emoji:style=Regular:scale=8;3
 
 tray-position = right
 tray-padding = 1
 tray-background = ${colors.black}
 
-modules-left = wlan
+modules-left = wlan workspaces-xmonad title-xmonad
 modules-center = temperature cpu memory
-modules-right = date battery
+modules-right = alsa backlight date battery
 
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.blue}
-label = "%percentage% "
+label = "%percentage%% "
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = "  "
 format-prefix-foreground = ${colors.green}
-label = "%percentage_used% "
+label = "%percentage_used%% "
 
 [module/wlan]
 type = internal/network
@@ -85,17 +86,37 @@ format-connected = <ramp-signal> <label-connected>
 label-connected = "%essid% "
 label-connected-foreground = ${colors.red}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+ramp-signal-0 = 😡
+ramp-signal-1 = 😠
+ramp-signal-2 = 😐
+ramp-signal-3 = 🙂
+ramp-signal-4 = 😁
 ramp-signal-foreground = ${colors.red}
+
+[module/workspaces-xmonad]
+type = custom/script
+exec = tail -F /tmp/.xmonad-workspace-log
+exec-if = [ -p /tmp/.xmonad-workspace-log ]
+tail = true
+
+format-foreground = ${colors.cyan}
+
+label = "%output% "
+
+[module/title-xmonad]
+type = custom/script
+exec = tail -F /tmp/.xmonad-title-log
+exec-if = [ -p /tmp/.xmonad-title-log ]
+tail = true
+
+format-foreground = ${colors.yellow}
+
+label = "%output% "
 
 [module/battery]
 type = internal/battery
 battery = BAT0
-adapter = ADP1
+adapter = AC
 full-at = 100
 
 label-discharging = "%percentage%% "
@@ -137,11 +158,42 @@ label-warn = "%temperature-c% "
 label-warn-foreground = ${colors.red}
 
 ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-3 = 
-ramp-4 = 
+ramp-1 = 
+ramp-2 = 
 ramp-foreground = ${colors.cyan}
+
+[module/alsa]
+type = internal/alsa
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
+
+master-mixer = Master
+
+interval = 5
+
+format-volume = <ramp-volume> <label-volume>
+
+label-muted = 
+label-muted-foreground = ${colors.red}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+
+format = <ramp> <label>
+
+label = "%percentage%% "
+
+ramp-0 = 🌑
+ramp-1 = 🌒
+ramp-2 = 🌓
+ramp-3 = 🌔
+ramp-4 = 🌕
 
 [module/date]
 type = internal/date
