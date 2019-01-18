@@ -3,6 +3,10 @@
 #
 
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export GOPATH=$HOME/Code/go
+export PATH=$GOPATH/bin:$PATH
 # export RANGER_LOAD_DEFAULT_RC=FALSE
 export VISUAL=nvim
 export EDITOR=nvim

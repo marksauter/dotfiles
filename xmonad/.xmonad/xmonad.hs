@@ -7,7 +7,6 @@ import System.IO
 
 main :: IO ()
 main = do
-	xmproc <- spawnPipe "xmobar"
 	xbindkeys <- spawnPipe "xbindkeys"
 	xmonad $ def
 		{ terminal    = "termite"
@@ -20,11 +19,6 @@ main = do
 		, manageHook  = manageDocks <+> manageHook def
 		, layoutHook  = avoidStruts $ layoutHook def
 		, handleEventHook = handleEventHook def <+> docksEventHook
-		, logHook     = dynamicLogWithPP xmobarPP
-			{ ppOutput	= hPutStrLn xmproc
-			, ppTitle 	= xmobarColor "darkgreen" "" . shorten 20
-			, ppHiddenNoWindows = xmobarColor "grey" ""
-			}
 		, startupHook = myStartupHook
 		}
 		`additionalKeysP` myAdditionalKeysP
@@ -35,6 +29,7 @@ myWorkspaces = [ "code", "web" ]
 myStartupHook = do
 	spawn "xautolock -time 5 -locker \"i3lock -i /usr/share/backgrounds/hanyujie.png -p default -n\" -notify 20 -notifier \"xset dpms forceoff\" &"
 	spawn "feh --bg-fill /usr/share/backgrounds/hanyujie.png &"
+	spawn "$HOME/.config/polybar/launch.sh"
 	spawn "compton -b"
 
 myAdditionalKeysP =

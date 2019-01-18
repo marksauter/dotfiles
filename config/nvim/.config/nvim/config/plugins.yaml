@@ -150,6 +150,12 @@
 - { repo: othree/nginx-contrib-vim, on_ft: nginx }
 - { repo: IN3D/vim-raml, on_ft: raml }
 
+- repo: rust-lang/rust.vim
+  on_ft: rust
+  hook_source: |
+    let g:rustfmt_autosave = 1
+
+
 # ==========================================
 # Commands
 # --------
@@ -461,6 +467,10 @@
     let g:tern_show_signature_in_pum = 0
   hook_post_source: |
     autocmd MyAutoCmd FileType javascript setlocal omnifunc=tern#Complete
+
+- repo: racer-rust/vim-racer
+  on_ft: rust
+  on_event: InsertEnter
 
 # ==========================================
 # Denite

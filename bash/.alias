@@ -2,6 +2,7 @@
 alias dots='cd ~/.dotfiles'
 alias down='cd ~/Downloads'
 alias code='cd ~/Code'
+alias cloud='cd ~/Cloud'
 
 # Quick Config Editing
 alias vimrc='nvim ~/.config/nvim/config/vimrc'
