@@ -378,4 +378,20 @@ if dein#tap('vim-textobj-function')
 	xmap <silent> if <Plug>(textobj-function-i)
 endif
 
+if dein#tap('rust.vim')
+	autocmd MyAutoCmd FileType rust
+		\   nmap <silent><buffer> <Leader>rsb :<C-u>Cbuild<CR>
+		\ | nmap <silent><buffer> <Leader>rsr :<C-u>Crun<CR>
+		\ | nmap <silent><buffer> <Leader>rst :<C-u>Ctest<CR>
+endif
+
+if dein#tap('vim-racer')
+	autocmd MyAutoCmd FileType rust
+		\		nmap <silent><buffer> <C-]>				<Plug>(rust-def)
+		\ | nmap <silent><buffer> <Leader>rss	<Plug>(rust-def-split)
+		\ | nmap <silent><buffer> <Leader>rvs	<Plug>(rust-def-vertical)
+		\ | nmap <silent><buffer> <Leader>rsd	<Plug>(rust-doc)
+		\ | nmap <silent><buffer> K						<Plug>(rust-doc)
+endif
+
 " vim: set ts=2 sw=2 tw=80 noet :

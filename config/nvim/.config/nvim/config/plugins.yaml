@@ -69,7 +69,7 @@
 - repo: rhysd/vim-gfm-syntax
   depends: vim-markdown
   on_ft: markdown
-  hook_source: |
+  hook_add: |
     let g:gfm_syntax_enable_always = 0
     let g:gfm_syntax_highlight_emoji = 0
     let g:gfm_syntax_enable_filetypes = ['markdown']
@@ -151,9 +151,11 @@
 - { repo: IN3D/vim-raml, on_ft: raml }
 
 - repo: rust-lang/rust.vim
+  if: executable('cargo')
   on_ft: rust
   hook_source: |
     let g:rustfmt_autosave = 1
+    let g:rust_fold = 1
 
 
 # ==========================================
@@ -299,7 +301,7 @@
     let g:lint_types = [
       \  'yaml.ansible', 'python', 'php', 'ruby', 'vim', 'go', 'sh',
       \  'javascript', 'jsx', 'javascript.jsx', 'json', 'css',
-      \  'markdown', 'html', 'yaml'
+      \  'markdown', 'html', 'yaml', 'rust'
       \ ]
     autocmd MyAutoCmd BufWritePost *
       \  if expand('%:p') !~ $VIMPATH
@@ -469,8 +471,10 @@
     autocmd MyAutoCmd FileType javascript setlocal omnifunc=tern#Complete
 
 - repo: racer-rust/vim-racer
+  if: executable('racer')
   on_ft: rust
-  on_event: InsertEnter
+  hook_add: |
+    let g:racer_experimental_completer = 1
 
 # ==========================================
 # Denite

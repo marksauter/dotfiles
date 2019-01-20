@@ -43,15 +43,15 @@ border-top-size = 5
 border-top-color = ${colors.bg}
 
 spacing = 0
-padding-left = 1
+padding-left = 0
 padding-right = 0
-module-margin-left = 0
-module-margin-right = 0
+module-margin-left = 1
+module-margin-right = 1
 
 font-0 = Roboto:size=15;3
 font-1 = Font Awesome 5 Free:style=Regular:pixelsize=15;3
 font-2 = Font Awesome 5 Free:style=Solid:pixelsize=15;3
-font-3 = Font Awesome 5 Free Brands:pixelsize=15;3
+font-3 = Font Awesome 5 Brands:style=Regular:pixelsize=15;3
 font-4 = Noto Color Emoji:style=Regular:scale=8;3
 
 tray-position = right
@@ -60,7 +60,7 @@ tray-background = ${colors.black}
 
 modules-left = wlan workspaces-xmonad title-xmonad
 modules-center = temperature cpu memory
-modules-right = alsa backlight date battery
+modules-right = weather alsa backlight date battery
 
 [module/cpu]
 type = internal/cpu
@@ -101,6 +101,8 @@ tail = true
 
 format-foreground = ${colors.cyan}
 
+format-prefix = "  "
+
 label = "%output% "
 
 [module/title-xmonad]
@@ -110,6 +112,8 @@ exec-if = [ -p /tmp/.xmonad-title-log ]
 tail = true
 
 format-foreground = ${colors.yellow}
+
+format-prefix = "  "
 
 label = "%output% "
 
@@ -162,6 +166,16 @@ ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.cyan}
 
+[module/weather]
+type = custom/script
+exec = ~/.config/polybar/modules/forecast/polybar-forecast/polybar-forecast
+exec-if = ping openweather.org -c 1
+interval = 600
+
+format-padding = 1
+
+label-font = 3
+
 [module/alsa]
 type = internal/alsa
 master-soundcard = default
@@ -173,6 +187,7 @@ master-mixer = Master
 interval = 5
 
 format-volume = <ramp-volume> <label-volume>
+format-padding = 1
 
 label-muted = 
 label-muted-foreground = ${colors.red}
@@ -180,6 +195,8 @@ label-muted-foreground = ${colors.red}
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
+
+ramp-volume-foreground = ${colors.cyan}
 
 [module/backlight]
 type = internal/backlight
@@ -197,17 +214,13 @@ ramp-4 = 🌕
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 60
 
-date =
-date-alt = " %a %d %b %Y"
+date = %a %d %b
+time = %l:%M %p
 
-time = " %H:%M "
-time-alt = " %H:%M "
+label =  %date%  %time%
 
-label = %date%%time%
-
-format-prefix = 
-format-prefix-foreground = ${colors.magenta}
+format-padding = 1
 
 # vim: ft=dosini cms=#%s

@@ -52,4 +52,17 @@ endfunction
 autocmd MyAutoCmd BufWritePre *.js call s:set_javascript_exe()
 call s:set_javascript_exe()
 
+" RUST
+" Gross hack to stop Neomake running when exitting because it creates a zombie cargo check process
+" which holds the lock and never exits. But then, if you only have QuitPre, closing one pane will
+" disable neomake, so BufEnter reenables when you enter another buffer.
+let s:quitting = 0
+au QuitPre *.rs let s:quitting = 1
+au BufEnter *.rs let s:quitting = 0
+au BufWritePost *.rs if ! s:quitting | Neomake | else | echom "Neomake disabled"| endif
+au QuitPre *.ts let s:quitting = 1
+au BufEnter *.ts let s:quitting = 0
+au BufWritePost *.ts if ! s:quitting | Neomake | else | echom "Neomake disabled"| endif
+let g:neomake_warning_sign = {'text': '?'}
+
 " vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :
