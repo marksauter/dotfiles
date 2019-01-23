@@ -3,6 +3,9 @@ alias aur='cd ~/.aur'
 alias dots='cd ~/.dotfiles'
 alias down='cd ~/Downloads'
 alias code='cd ~/Code'
+alias codego='cd ~/Code/go'
+alias coders='cd ~/Code/rust'
+alias codejs='cd ~/Code/javascript/'
 alias cloud='cd ~/Cloud'
 
 # Quick Config Editing
