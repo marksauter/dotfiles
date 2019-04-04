@@ -1,12 +1,14 @@
 # Quick Switch To Directories
 alias aur='cd ~/.aur'
+alias blog='cd ~/Code/javascript/src/github.com/marksauter/markus-ninja-gatsby/'
 alias dots='cd ~/.dotfiles'
 alias down='cd ~/Downloads'
 alias code='cd ~/Code'
-alias codego='cd ~/Code/go'
-alias coders='cd ~/Code/rust'
-alias codejs='cd ~/Code/javascript/'
+alias codego='cd ~/Code/go/src/github.com/marksauter/'
+alias coders='cd ~/Code/rust/src/github.com/marksauter/'
+alias codejs='cd ~/Code/javascript/src/github.com/marksauter/'
 alias cloud='cd ~/Cloud'
+alias pics='cd ~/Pictures'
 
 # Quick Config Editing
 alias vimrc='nvim ~/.config/nvim/config/vimrc'

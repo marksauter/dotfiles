@@ -204,7 +204,7 @@ if dein#tap('jedi-vim')
 	let g:jedi#completions_command = ''
 	let g:jedi#documentation_command = 'K'
 	let g:jedi#goto_command = '<C-]>'
-	let g:jedi#goto_assignments_command = '<leader>g'
+	let g:jedi#goto_assignments_command = '<Leader>i'
 	let g:jedi#rename_command = '<Leader>r'
 	let g:jedi#usages_command = '<Leader>n'
 endif
@@ -212,10 +212,10 @@ endif
 if dein#tap('tern_for_vim')
 	autocmd MyAutoCmd FileType javascript,jsx,javascript.jsx
 		\  nnoremap <silent><buffer> K          :<C-u>TernDoc<CR>
-		\| nnoremap <silent><buffer> <C-]>      :<C-u>TernDefSplit<CR>
-		\| nnoremap <silent><buffer> <leader>g  :<C-u>TernType<CR>
-		\| nnoremap <silent><buffer> <leader>n  :<C-u>TernRefs<CR>
-		\| nnoremap <silent><buffer> <leader>r  :<C-u>TernRename<CR>
+		\| nnoremap <silent><buffer> <C-]>      :<C-u>TernDef<CR>
+		\| nnoremap <silent><buffer> <Leader>i  :<C-u>TernType<CR>
+		\| nnoremap <silent><buffer> <Leader>n  :<C-u>TernRefs<CR>
+		\| nnoremap <silent><buffer> <Leader>r  :<C-u>TernRename<CR>
 endif
 
 if dein#tap('vim-gitgutter')
@@ -228,16 +228,15 @@ endif
 
 if dein#tap('vim-go')
 	autocmd MyAutoCmd FileType go
-		\   nmap <C-]> <Plug>(go-def)
-		\ | nmap <Leader>god  <Plug>(go-describe)
-		\ | nmap <Leader>goc  <Plug>(go-callees)
-		\ | nmap <Leader>goC  <Plug>(go-callers)
-		\ | nmap <Leader>goi  <Plug>(go-info)
-		\ | nmap <Leader>gom  <Plug>(go-implements)
-		\ | nmap <Leader>gos  <Plug>(go-callstack)
-		\ | nmap <Leader>goe  <Plug>(go-referrers)
-		\ | nmap <Leader>gor  <Plug>(go-run)
-		\ | nmap <Leader>gov  <Plug>(go-vet)
+		\   nmap K					<Plug>(go-doc)
+		\ | nmap <C-]>			<Plug>(go-def)
+		\ | nmap <Leader>i  <Plug>(go-info)
+		\ | nmap <Leader>n  <Plug>(go-referrers)
+		\ | nmap <Leader>r	<Plug>(go-rename)
+		\ | nmap <Leader>b	<Plug>(go-build)
+		\ | nmap <Leader>u	<Plug>(go-run)
+		\ | nmap <Leader>e	<Plug>(go-test)
+		\ | nmap <Leader>p  <Plug>(go-test-func)
 endif
 
 if dein#tap('phpcomplete-extended')
@@ -252,13 +251,13 @@ if dein#tap('vimagit')
 endif
 
 if dein#tap('vim-easygit')
-	nnoremap <silent> <leader>gd :Gdiff<CR>
-	nnoremap <silent> <leader>gD :Gdiffoff<CR>
-	nnoremap <silent> <leader>gc :Gcommit<CR>
-	nnoremap <silent> <leader>gb :Gblame<CR>
-	nnoremap <silent> <leader>gB :Gbrowse<CR>
-	nnoremap <silent> <leader>gS :Gstatus<CR>
-	nnoremap <silent> <leader>gp :Gpush<CR>
+	nnoremap <silent> <Leader>gd :Gdiff<CR>
+	nnoremap <silent> <Leader>gD :Gdiffoff<CR>
+	nnoremap <silent> <Leader>gc :Gcommit<CR>
+	nnoremap <silent> <Leader>gb :Gblame<CR>
+	nnoremap <silent> <Leader>gB :Gbrowse<CR>
+	nnoremap <silent> <Leader>gS :Gstatus<CR>
+	nnoremap <silent> <Leader>gp :Gpush<CR>
 endif
 
 if dein#tap('vim-altr')
@@ -380,18 +379,15 @@ endif
 
 if dein#tap('rust.vim')
 	autocmd MyAutoCmd FileType rust
-		\   nmap <silent><buffer> <Leader>rsb :<C-u>Cbuild<CR>
-		\ | nmap <silent><buffer> <Leader>rsr :<C-u>Crun<CR>
-		\ | nmap <silent><buffer> <Leader>rst :<C-u>Ctest<CR>
+		\   nmap <silent><buffer> <Leader>b :<C-u>Cbuild<CR>
+		\ | nmap <silent><buffer> <Leader>u :<C-u>Crun<CR>
+		\ | nmap <silent><buffer> <Leader>e :<C-u>Ctest<CR>
 endif
 
 if dein#tap('vim-racer')
 	autocmd MyAutoCmd FileType rust
-		\		nmap <silent><buffer> <C-]>				<Plug>(rust-def)
-		\ | nmap <silent><buffer> <Leader>rss	<Plug>(rust-def-split)
-		\ | nmap <silent><buffer> <Leader>rvs	<Plug>(rust-def-vertical)
-		\ | nmap <silent><buffer> <Leader>rsd	<Plug>(rust-doc)
-		\ | nmap <silent><buffer> K						<Plug>(rust-doc)
+		\		nmap <silent><buffer> K			<Plug>(rust-doc)
+		\	|	nmap <silent><buffer> <C-]>	<Plug>(rust-def)
 endif
 
 " vim: set ts=2 sw=2 tw=80 noet :

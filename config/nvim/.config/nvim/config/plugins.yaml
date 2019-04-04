@@ -51,9 +51,12 @@
     let g:vim_markdown_folding_level = 6
     let g:vim_markdown_emphasis_multiline = 0
     let g:vim_markdown_conceal = 0
+    let g:vim_markdown_conceal_code_blocks = 0
+    let g:vim_markdown_math = 1
     let g:vim_markdown_frontmatter = 1
     let g:vim_markdown_new_list_item_indent = 2
     let g:vim_markdown_edit_url_in = 'vsplit'
+    let g:vim_markdown_strikethrough = 1
     let g:vim_markdown_fenced_languages = [
       \ 'c++=cpp',
       \ 'viml=vim',
@@ -63,7 +66,8 @@
       \ 'json=javascript',
       \ 'docker=Dockerfile',
       \ 'makefile=make',
-      \ 'py=python'
+      \ 'py=python',
+      \ 'rs=rust'
       \ ]
 
 - repo: rhysd/vim-gfm-syntax
@@ -115,6 +119,8 @@
     let g:go_highlight_generate_tags = 1
     let g:go_highlight_operators = 1
     let g:go_highlight_string_spellcheck = 0
+    let g:go_metalinter_autosave = 0
+    let g:go_fmt_command = "goimports"
 
 - { repo: vim-python/python-syntax, on_ft: python }
 - { repo: Vimjas/vim-python-pep8-indent, on_ft: python }
@@ -146,7 +152,8 @@
 - { repo: dag/vim-fish, on_ft: fish }
 - { repo: jstrater/mpvim, on_ft: portfile }
 - { repo: robbles/logstash.vim, on_ft: logstash }
-- { repo: exu/pgsql.vim, on_ft: pgsql }
+- { repo: lifepillar/pgsql.vim, on_ft: pgsql }
+- { repo: jparise/vim-graphql, on_ft: graphql }
 - { repo: othree/nginx-contrib-vim, on_ft: nginx }
 - { repo: IN3D/vim-raml, on_ft: raml }
 
@@ -299,10 +306,11 @@
   hook_source: source $VIMPATH/config/plugins/neomake.vim
   hook_add: |
     let g:lint_types = [
-      \  'yaml.ansible', 'python', 'php', 'ruby', 'vim', 'go', 'sh',
+      \  'yaml.ansible', 'python', 'php', 'ruby', 'vim', 'sh',
       \  'javascript', 'jsx', 'javascript.jsx', 'json', 'css',
-      \  'markdown', 'html', 'yaml', 'rust'
+      \  'markdown', 'html', 'yaml', 'rust', 'go'
       \ ]
+    let g:neomake_go_gometalinter_args = ['--disable-all', '--enable=errcheck', '--vendor']
     autocmd MyAutoCmd BufWritePost *
       \  if expand('%:p') !~ $VIMPATH
       \      && index(g:lint_types, &filetype) > -1
@@ -368,7 +376,7 @@
     let g:neosnippet#enable_snipmate_compatibility = 1
     let g:neosnippet#enable_completed_snippet = 1
     let g:neosnippet#expand_word_boundary = 1
-    autocmd MyAutoCmd CompleteDone * call neosnippet#complete_done()
+    let g:neosnippet#enable_complete_done = 1
     autocmd MyAutoCmd InsertLeave * NeoSnippetClearMarkers
 
 - repo: ludovicchabant/vim-gutentags

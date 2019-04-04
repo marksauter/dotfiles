@@ -137,10 +137,13 @@ cmap W!! w !sudo tee % >/dev/null
 " ---------
 
 " I like to :quit with 'q', shrug.
-nnoremap <silent> q :<C-u>:quit<CR>
+nnoremap <silent><Leader>q :<C-u>:quit<CR>
+autocmd MyAutoCmd FileType help nnoremap <silent><buffer> q :<C-u>:quit<CR>
 autocmd MyAutoCmd FileType man nnoremap <silent><buffer> q :<C-u>:quit<CR>
+autocmd MyAutoCmd FileType rustdoc nnoremap <silent><buffer> q :<C-u>:quit<CR>
 
 " Macros
+map q <Nop>
 nnoremap Q q
 nnoremap gQ @q
 
@@ -188,7 +191,7 @@ function! s:get_selection(cmdtype) "{{{
 endfunction "}}}
 
 " Background dark/light toggle and contrasts
-nnoremap <silent><Leader>b :<C-u>call <SID>toggle_background()<CR>
+nnoremap <silent><Leader>tb :<C-u>call <SID>toggle_background()<CR>
 nmap <silent> s- :<c-u>call <SID>toggle_contrast(-v:count1)<cr>
 nmap <silent> s= :<c-u>call <SID>toggle_contrast(+v:count1)<cr>
 
