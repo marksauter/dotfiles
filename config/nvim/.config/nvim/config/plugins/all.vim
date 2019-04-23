@@ -379,15 +379,15 @@ endif
 
 if dein#tap('rust.vim')
 	autocmd MyAutoCmd FileType rust
-		\   nmap <silent><buffer> <Leader>b :<C-u>Cbuild<CR>
-		\ | nmap <silent><buffer> <Leader>u :<C-u>Crun<CR>
-		\ | nmap <silent><buffer> <Leader>e :<C-u>Ctest<CR>
-endif
+		\  nmap <silent><buffer> <Leader>b :<C-u>Cbuild<CR>
+		\| nmap <silent><buffer> <Leader>u :<C-u>Crun<CR>
+		\| nmap <silent><buffer> <Leader>e :<C-u>Ctest<CR>
 
-if dein#tap('vim-racer')
-	autocmd MyAutoCmd FileType rust
-		\		nmap <silent><buffer> K			<Plug>(rust-doc)
-		\	|	nmap <silent><buffer> <C-]>	<Plug>(rust-def)
+	if dein#tap('vim-racer')
+		autocmd MyAutoCmd FileType rust
+			\		nmap <silent><buffer> K			<Plug>(rust-doc)
+			\|	nmap <silent><buffer> <C-]>	<Plug>(rust-def)
+	endif
 endif
 
 " vim: set ts=2 sw=2 tw=80 noet :
