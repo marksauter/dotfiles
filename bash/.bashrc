@@ -105,4 +105,10 @@ if [[ -r /usr/share/z/z.sh ]];then
 	source /usr/share/z/z.sh
 fi
 
+# ===============================================
+# FZF
+# ---
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+
 # vim: set ts=2 sw=2 tw=80 noet :

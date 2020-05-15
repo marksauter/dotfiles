@@ -1,3 +1,0 @@
-[submodule "config/polybar/.config/polybar/modules/forecast/polybar-forecast"]
-	path = config/polybar/.config/polybar/modules/forecast/polybar-forecast
-	url = git@github.com:marksauter/polybar-forecast.git
